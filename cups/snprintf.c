@@ -81,7 +81,7 @@ _cups_vsnprintf(char       *buffer,	/* O - Output buffer */
 	format ++;
 	width = va_arg(ap, int);
 
-	snprintf(tptr, sizeof(tformat) - (tptr - tformat), "%d", width);
+	snprintf(tptr, (size_t)sizeof(tformat) - (tptr - tformat), "%d", width);
 	tptr += strlen(tptr);
       }
       else
@@ -113,7 +113,7 @@ _cups_vsnprintf(char       *buffer,	/* O - Output buffer */
 	  format ++;
 	  prec = va_arg(ap, int);
 
-	  snprintf(tptr, sizeof(tformat) - (tptr - tformat), "%d", prec);
+	  snprintf(tptr, (size_t)sizeof(tformat) - (tptr - tformat), "%d", prec);
 	  tptr += strlen(tptr);
 	}
 	else
