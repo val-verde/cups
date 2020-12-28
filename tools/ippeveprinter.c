@@ -38,7 +38,11 @@ typedef ULONG nfds_t;
 #else
 extern char **environ;
 
+#ifdef __GLIBC__
 #  include <sys/fcntl.h>
+#else
+#  include <fcntl.h>
+#endif
 #  include <sys/wait.h>
 #  include <poll.h>
 #endif /* _WIN32 */

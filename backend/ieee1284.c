@@ -76,7 +76,11 @@ backendGetDeviceID(
     *device_id = '\0';
 
 #  ifdef __linux
+#   ifdef __GLIBC__
     if (ioctl(fd, LPIOC_GET_DEVICE_ID((unsigned)device_id_size), device_id))
+#   else
+    if (ioctl(fd, (int)LPIOC_GET_DEVICE_ID((unsigned)device_id_size), device_id))
+#   endif
     {
      /*
       * Linux has to implement things differently for every device it seems.
