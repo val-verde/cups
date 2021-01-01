@@ -680,8 +680,11 @@ cupsdAuthorize(cupsd_client_t *con)	/* I - Client connection */
 	    * OK, the password isn't blank, so compare with what came from the
 	    * client...
 	    */
-
+#  ifdef __ANDROID__
+	    pass = password;
+#  else
 	    pass = crypt(password, pw->pw_passwd);
+#  endif
 
 	    if (!pass || strcmp(pw->pw_passwd, pass))
 	    {
