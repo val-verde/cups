@@ -394,7 +394,8 @@ libcups.2.dylib:	$(LIBOBJS)
 
 libcups.la:    $(LIBOBJS)
 	echo Linking $@...
-	$(LD_CC) $(ARCHFLAGS) $(ALL_DSOFLAGS) -o $@ $(LIBOBJS:.o=.lo) \
+	echo "$(LD_CC) || $(ARCHFLAGS) || $(ALL_DSOFLAGS)"
+	$(LD_CC) $(ARCHFLAGS) $(ALL_DSOFLAGS) $(ALL_CFLAGS) -o $@ $(LIBOBJS:.o=.lo) \
 		-rpath $(LIBDIR) -version-info 2:14 $(LIBS)
 
 
@@ -460,7 +461,7 @@ libcupsimage.2.dylib:	$(IMAGEOBJS) libcups.2.dylib
 
 libcupsimage.la:       $(IMAGEOBJS) libcups.la
 	echo Linking $@...
-	$(DSO) $(ARCHFLAGS) $(ALL_DSOFLAGS) -o $@ $(IMAGEOBJS:.o=.lo) \
+	$(DSO) $(ARCHFLAGS) $(ALL_DSOFLAGS) $(ALL_CFLAGS) -o $@ $(IMAGEOBJS:.o=.lo) \
 		$(LINKCUPS) -rpath $(LIBDIR) -version-info 2:3
 
 
